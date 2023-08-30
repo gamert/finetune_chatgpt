@@ -1,10 +1,10 @@
 import openai
 import time
 import logging
+import os
 
-
-openai.api_key = "Your API-KEY"
-
+openai.api_key = "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"
+os.environ["OPENAI_API_KEY"] = openai.api_key
 
 def configure_logging():
     """
@@ -42,11 +42,11 @@ if __name__ == '__main__':
     # Configure logger
     logger = configure_logging()
 
-    file_name = "train_data.jsonl"
+    file_name = "train_data.jsonl"  #translate_data.jsonl
     uploaded_file = upload_file(file_name)
 
     logger.info(uploaded_file)
-    job = openai.FineTuningJob.create(training_file=uploaded_file.id, model="gpt-3.5-turbo")
+    job = openai.FineTuningJob.create(training_file=uploaded_file.id, model="gpt-3.5-turbo")    #gpt-3.5-turbo-0613
     logger.info(f"Job created with id: {job.id}")
 
     # Note: If you forget the job id, you can use the following code to list all the models fine-tuned.
