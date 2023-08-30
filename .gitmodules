@@ -1,0 +1,3 @@
+[submodule "chatgpt-finetune-ui"]
+	path = chatgpt-finetune-ui
+	url = ../../anchen1011/chatgpt-finetune-ui
