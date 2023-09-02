@@ -4,14 +4,14 @@
 # @File    : machine_translation.py
 # @Software: PyCharm
 
-import paddle
-import paddle.nn.functional as F
+# import paddle
+# import paddle.nn.functional as F
 import re
 import numpy as np
 import time
 import warnings
 warnings.filterwarnings('ignore')
-print(paddle.__version__)  # 2.1.0
+# print(paddle.__version__)  # 2.1.0
 
 # 设置训练句子最大长度，用于筛选数据集中的部分数据
 # MAX_LEN = 256
@@ -36,6 +36,10 @@ def create_train_data_translate(file_path, MAX_LEN = 512):
     pairs = []
     for line in lines:
         en_sent, cn_sent, _ = line.split('\t')  # Hi.嗨。
+        if en_sent.find("\"") != -1 :
+            en_sent =en_sent.replace("\"", "\\\"")
+        if cn_sent.find("\"") != -1 :
+            cn_sent =cn_sent.replace("\"", "\\\"")
         # 构造一个新的翻译格式...
         # {"messages": [{"role": "system", "content": "你是一个汉语语法纠错器。"},
         #               {"role": "user", "content": "检测这个句子的语法错误：这件事对我们大家当时震动很大。"},
